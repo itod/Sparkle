@@ -206,6 +206,12 @@
 		767B61AE1972D488004E0C3C /* SUGuidedPackageInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 767B61AB1972D488004E0C3C /* SUGuidedPackageInstaller.m */; };
 		A5BF4F1D1BC7668B007A052A /* SUTestWebServer.m in Sources */ = {isa = PBXBuildFile; fileRef = A5BF4F1C1BC7668B007A052A /* SUTestWebServer.m */; };
 		C23E885B1BE7B24F0050BB73 /* SparkleTestCodeSignApp.enc.dmg in Resources */ = {isa = PBXBuildFile; fileRef = C23E88591BE7AF890050BB73 /* SparkleTestCodeSignApp.enc.dmg */; };
+		D3949D7B1DCACD230085A74D /* IconFamily.h in Headers */ = {isa = PBXBuildFile; fileRef = D3949D771DCACD230085A74D /* IconFamily.h */; };
+		D3949D7C1DCACD230085A74D /* IconFamily.m in Sources */ = {isa = PBXBuildFile; fileRef = D3949D781DCACD230085A74D /* IconFamily.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		D3949D7D1DCACD230085A74D /* IconFamily.m in Sources */ = {isa = PBXBuildFile; fileRef = D3949D781DCACD230085A74D /* IconFamily.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		D3949D7E1DCACD230085A74D /* NSString+CarbonFSRefCreation.h in Headers */ = {isa = PBXBuildFile; fileRef = D3949D791DCACD230085A74D /* NSString+CarbonFSRefCreation.h */; };
+		D3949D7F1DCACD230085A74D /* NSString+CarbonFSRefCreation.m in Sources */ = {isa = PBXBuildFile; fileRef = D3949D7A1DCACD230085A74D /* NSString+CarbonFSRefCreation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		D3949D801DCACD230085A74D /* NSString+CarbonFSRefCreation.m in Sources */ = {isa = PBXBuildFile; fileRef = D3949D7A1DCACD230085A74D /* NSString+CarbonFSRefCreation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F8761EB11ADC5068000C9034 /* SUCodeSigningVerifierTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F8761EB01ADC5068000C9034 /* SUCodeSigningVerifierTest.m */; };
 		F8761EB31ADC50EB000C9034 /* SparkleTestCodeSignApp.zip in Resources */ = {isa = PBXBuildFile; fileRef = F8761EB21ADC50EB000C9034 /* SparkleTestCodeSignApp.zip */; };
 		F8761EB61ADC5E7A000C9034 /* SUCodeSigningVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 61B078CD15A5FB6100600039 /* SUCodeSigningVerifier.m */; };
@@ -661,6 +667,10 @@
 		A5BF4F1B1BC7668B007A052A /* SUTestWebServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUTestWebServer.h; sourceTree = "<group>"; };
 		A5BF4F1C1BC7668B007A052A /* SUTestWebServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUTestWebServer.m; sourceTree = "<group>"; };
 		C23E88591BE7AF890050BB73 /* SparkleTestCodeSignApp.enc.dmg */ = {isa = PBXFileReference; lastKnownFileType = file; path = SparkleTestCodeSignApp.enc.dmg; sourceTree = "<group>"; };
+		D3949D771DCACD230085A74D /* IconFamily.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconFamily.h; sourceTree = "<group>"; };
+		D3949D781DCACD230085A74D /* IconFamily.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconFamily.m; sourceTree = "<group>"; };
+		D3949D791DCACD230085A74D /* NSString+CarbonFSRefCreation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CarbonFSRefCreation.h"; sourceTree = "<group>"; };
+		D3949D7A1DCACD230085A74D /* NSString+CarbonFSRefCreation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CarbonFSRefCreation.m"; sourceTree = "<group>"; };
 		F8761EB01ADC5068000C9034 /* SUCodeSigningVerifierTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUCodeSigningVerifierTest.m; sourceTree = "<group>"; };
 		F8761EB21ADC50EB000C9034 /* SparkleTestCodeSignApp.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = SparkleTestCodeSignApp.zip; sourceTree = "<group>"; };
 		FA1941CA0D94A70100DD942E /* ConfigFrameworkDebug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = ConfigFrameworkDebug.xcconfig; sourceTree = "<group>"; };
@@ -886,6 +896,7 @@
 		1495006D195FBBBD00BC5B5B /* Sparkle */ = {
 			isa = PBXGroup;
 			children = (
+				D3949D761DCACD230085A74D /* IconFamily */,
 				61299B3909CB055000B7442F /* Appcast Support */,
 				55C14BD5136EEFD000649790 /* Autoupdate */,
 				089C1665FE841158C02AAC07 /* Framework Resources */,
@@ -1122,6 +1133,17 @@
 			path = "UI Tests";
 			sourceTree = "<group>";
 		};
+		D3949D761DCACD230085A74D /* IconFamily */ = {
+			isa = PBXGroup;
+			children = (
+				D3949D771DCACD230085A74D /* IconFamily.h */,
+				D3949D781DCACD230085A74D /* IconFamily.m */,
+				D3949D791DCACD230085A74D /* NSString+CarbonFSRefCreation.h */,
+				D3949D7A1DCACD230085A74D /* NSString+CarbonFSRefCreation.m */,
+			);
+			path = IconFamily;
+			sourceTree = SOURCE_ROOT;
+		};
 		FA1941C40D94A6EA00DD942E /* Configurations */ = {
 			isa = PBXGroup;
 			children = (
@@ -1167,6 +1189,7 @@
 				611142E910FB1BE5009810AA /* bspatch.h in Headers */,
 				6160E7E10D3B4A8800E9CD71 /* NTSynchronousTask.h in Headers */,
 				61299B3609CB04E000B7442F /* Sparkle.h in Headers */,
+				D3949D7E1DCACD230085A74D /* NSString+CarbonFSRefCreation.h in Headers */,
 				61CFB3290E385186007A1735 /* Sparkle.pch in Headers */,
 				61B5FC0D09C4FC8200B25A18 /* SUAppcast.h in Headers */,
 				61B5FC7009C51F4A00B25A18 /* SUAppcastItem.h in Headers */,
@@ -1183,6 +1206,7 @@
 				7275F9C11B5F1F2900B1D19E /* SUFileManager.h in Headers */,
 				767B61AC1972D488004E0C3C /* SUGuidedPackageInstaller.h in Headers */,
 				61EF67590E25C5B400F754E0 /* SUHost.h in Headers */,
+				D3949D7B1DCACD230085A74D /* IconFamily.h in Headers */,
 				618FA5010DAE88B40026945C /* SUInstaller.h in Headers */,
 				55C14F06136EF6DB00649790 /* SULog.h in Headers */,
 				726F2CE51BC9C33D001971A4 /* SUOperatingSystem.h in Headers */,
@@ -1593,9 +1617,11 @@
 			files = (
 				55C14BD4136EEFCE00649790 /* Autoupdate.m in Sources */,
 				F8761EB61ADC5E7A000C9034 /* SUCodeSigningVerifier.m in Sources */,
+				D3949D7D1DCACD230085A74D /* IconFamily.m in Sources */,
 				55C14F00136EF6B700649790 /* SUConstants.m in Sources */,
 				7275F9C31B5F1F2900B1D19E /* SUFileManager.m in Sources */,
 				767B61AE1972D488004E0C3C /* SUGuidedPackageInstaller.m in Sources */,
+				D3949D801DCACD230085A74D /* NSString+CarbonFSRefCreation.m in Sources */,
 				55C14F0C136EF6EA00649790 /* SUHost.m in Sources */,
 				55C14F0D136EF6F200649790 /* SUInstaller.m in Sources */,
 				55C14F08136EF6DB00649790 /* SULog.m in Sources */,
@@ -1689,9 +1715,11 @@
 				61299A3009CA2DAB00B7442F /* SUDSAVerifier.m in Sources */,
 				7275F9C21B5F1F2900B1D19E /* SUFileManager.m in Sources */,
 				767B61AD1972D488004E0C3C /* SUGuidedPackageInstaller.m in Sources */,
+				D3949D7F1DCACD230085A74D /* NSString+CarbonFSRefCreation.m in Sources */,
 				61EF67560E25B58D00F754E0 /* SUHost.m in Sources */,
 				618FA5020DAE88B40026945C /* SUInstaller.m in Sources */,
 				55C14F07136EF6DB00649790 /* SULog.m in Sources */,
+				D3949D7C1DCACD230085A74D /* IconFamily.m in Sources */,
 				726F2CE61BC9C33D001971A4 /* SUOperatingSystem.m in Sources */,
 				618FA5230DAE8E8A0026945C /* SUPackageInstaller.m in Sources */,
 				61D85D6D0E10B2ED00F9B4A9 /* SUPipedUnarchiver.m in Sources */,

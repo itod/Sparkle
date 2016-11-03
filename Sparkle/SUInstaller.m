@@ -14,6 +14,12 @@
 #import "SUConstants.h"
 #import "SULog.h"
 
+#import "IconFamily.h"
+
+@interface NSObject ()
+- (BOOL)isFluidApp;
+@end
+
 @implementation SUInstaller
 
 + (BOOL)isAliasFolderAtPath:(NSString *)path
@@ -30,6 +36,11 @@
     SUParameterAssert(inUpdateFolder);
     SUParameterAssert(host);
 
+    BOOL isFluidApp = NO;
+    if ([NSApp respondsToSelector:@selector(isFluidApp)] && [NSApp isFluidApp]) {
+        isFluidApp = YES;
+    }
+    
     // Search subdirectories for the application
     NSString *currentFile,
         *newAppDownloadPath = nil,
@@ -47,7 +58,10 @@
         NSString *currentExtension = [currentFile pathExtension];
         NSString *currentFilenameNoExtension = [currentFilename stringByDeletingPathExtension];
         if ([currentFilename isEqualToString:bundleFileName] ||
-            [currentFilename isEqualToString:alternateBundleFileName]) // We found one!
+            [currentFilename isEqualToString:alternateBundleFileName] ||
+            // BEGIN -TD
+            (isFluidApp && [currentFilename isEqualToString:@"FluidApp.app"])) // We found one!
+            // END
         {
             isPackage = NO;
             newAppDownloadPath = currentPath;
@@ -100,6 +114,38 @@
     if (!newAppDownloadPath) {
         SULog(@"Searched %@ for %@.(app|pkg)", inUpdateFolder, bundleFileNameNoExtension);
     }
+    
+    // BEGIN -TD alter newBundle to match FluidApp Name, Icon & Info.plist
+    if (isFluidApp) {
+        NSString *goodAppPath = [[NSBundle mainBundle] bundlePath];
+        NSString *badAppPath = newAppDownloadPath;
+
+        SUIconFamily *ifam = [SUIconFamily iconFamilyWithIconOfFile:goodAppPath];
+        [ifam setAsCustomIconForDirectory:badAppPath withCompatibility:YES];
+        [[NSWorkspace sharedWorkspace] noteFileSystemChanged:badAppPath];
+
+        NSFileManager *mgr = [NSFileManager defaultManager];
+        NSString *goodDefaultsPath = [[[goodAppPath stringByAppendingPathComponent:@"Contents"] stringByAppendingPathComponent:@"Resources"] stringByAppendingPathComponent:@"FluidApp-DefaultValues.plist"];
+        NSString *badDefaultsPath = [[[badAppPath stringByAppendingPathComponent:@"Contents"] stringByAppendingPathComponent:@"Resources"] stringByAppendingPathComponent:@"FluidApp-DefaultValues.plist"];
+        [mgr removeItemAtPath:badDefaultsPath error:nil];
+        [mgr copyItemAtPath:goodDefaultsPath toPath:badDefaultsPath error:nil];
+
+        NSArray *goodInfoPlistComps = [NSArray arrayWithObjects:goodAppPath, @"Contents", @"Info", nil];
+        NSString *goodInfoPlistPath = [[NSString pathWithComponents:goodInfoPlistComps] stringByAppendingPathExtension:@"plist"];
+        NSMutableDictionary *goodInfoPlist = [NSMutableDictionary dictionaryWithContentsOfFile:goodInfoPlistPath];
+        NSString *bundleID = [goodInfoPlist objectForKey:@"CFBundleIdentifier"];
+        NSString *bundleName = [goodInfoPlist objectForKey:@"CFBundleName"];
+
+        NSArray *badInfoPlistComps = [NSArray arrayWithObjects:badAppPath, @"Contents", @"Info", nil];
+        NSString *badInfoPlistPath = [[NSString pathWithComponents:badInfoPlistComps] stringByAppendingPathExtension:@"plist"];
+        NSMutableDictionary *badInfoPlist = [NSMutableDictionary dictionaryWithContentsOfFile:badInfoPlistPath];
+        [badInfoPlist setObject:bundleID forKey:@"CFBundleIdentifier"];
+        [badInfoPlist setObject:bundleName forKey:@"CFBundleName"];
+        
+        [badInfoPlist writeToFile:badInfoPlistPath atomically:YES];
+    }
+    // END
+    
     return newAppDownloadPath;
 }
 
